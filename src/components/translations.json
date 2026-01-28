@@ -1,0 +1,66 @@
+{
+  "en": {
+    "companyName": "Welcome!",
+    "slogan": "Let’s Build a Smarter, Digital Ethiopia Together",
+    "motivation": "come and work together.",
+    "viewWebsite": "View Website",
+    "signup": "Sign Up in Main site",
+    "signin": "Sign In",
+    "contactPhone": "Phone",
+    "contactEmail": "Email",
+    "join":"Join Teamwork IT Solution where ideas become digital reality!",
+    "popup": {
+      "title": "Welcome Back",
+      "text": "Enter your email or phone to continue",
+      "checking": "Checking...",
+      "continue": "Continue",
+      "invalidPhone": "Please enter a valid phone/email",
+      "apiError": "Error connecting to server",
+      "welcome": "Hello",
+      "selectSystem": "Choose your link to continue:",
+      "differentPhone": "Use different phone/email",
+      "newUser": "New User Detected",
+      "notRegistered": "The phone/email <strong>{phone}</strong> is not registered. Please sign up.",
+      "register": "Sign Up"
+    }
+  },
+  "am": {
+    "companyName": "እንኳን ደህና መጡ!",
+    "slogan": "በአንድነት የተሻለች ዲጂታል ኢትዮጵያን እንገነባ!",
+    "motivation": "ኑ በጋራ እንሥራ!",
+    "viewWebsite": "ድህረገፅ ይጎብኙ",
+    "signup": "ዋና ሳይት ላይ ይመዝገቡ",
+    "signin": "ይግቡ",
+    "contactPhone": "ስልክ",
+    "contactEmail": "ኢሜል",
+    "join":"ሀሳቦች ወደ ዲጂታል እውነታ የሚቀየሩበት ቲምወርክ አይቲ ሶሉሽን አካል ይሁኑ!",
+    "popup": {
+      "title": "እንኳን ደህና መጣህ",
+      "text": "ለማቀጣጠል ኢሜልዎን ወይም ስልክዎን ያስገቡ",
+      "checking": "በማረጋገጥ...",
+      "continue": "ይቀጥሉ",
+      "invalidPhone": "እባክዎን ትክክለኛ ስልክ/ኢሜል ያስገቡ",
+      "apiError": "ከአገልግሎት ጋር ስህተት ተፈጥሯል",
+      "welcome": "ሰላም",
+      "selectSystem": "ለማቀጣጠል ሊንክዎን ይምረጡ:",
+      "differentPhone": "ሌላ ስልክ/ኢሜል ይጠቀሙ",
+      "newUser": "አዲስ ተጠቃሚ ተገኝቷል",
+      "notRegistered": "ስልክ/ኢሜል <strong>{phone}</strong> ይመዝገብ አልተደረገም። እባክዎን ይመዝገቡ።",
+      "register": "ይመዝገቡ"
+    },
+    "support": {
+  "title": "How to Sign In / Sign Up (Video Guides)",
+  "title_am": "እንዴት መመዝገብ / መግባት እንደሚቻል (ቪዲዮ መመሪያ)",
+  "main": "Main Website Guide",
+  "main_am": "ዋና ድህረ ገጽ መመሪያ",
+  "system1": "System 1 Guide",
+  "system1_am": "ስርዓት 1 መመሪያ",
+  "system2": "System 2 Guide",
+  "system2_am": "ስርዓት 2 መመሪያ",
+  "system3": "System 3 Guide",
+  "system3_am": "ስርዓት 3 መመሪያ"
+}
+
+    
+  }
+}
