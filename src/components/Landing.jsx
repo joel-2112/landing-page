@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import translations from "./translations.json";
+import PasswordInputDialog from "./pages/PasswordInputDialog";
+import ConfirmOtp from "./pages/ConfirmOtp";
 
 const socialChannels = [
   {
@@ -42,7 +44,7 @@ const socialChannels = [
 ];
 
 const EmailFlowPopup = ({ onClose, onNavigate }) => {
-  const [step, setStep] = useState("login"); // steps: login, select_system, forgot_password
+  const [step, setStep] = useState("login"); // steps: login, select_system, forgot_password, otp_input, change_password
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -51,6 +53,7 @@ const EmailFlowPopup = ({ onClose, onNavigate }) => {
 
   const LOGIN_API = "https://api.teamworksc.com/api/v1/users/exist";
   const FORGOT_PW_API = "https://api.teamworksc.com/api/v1/users/forgot-password";
+  const VERIFY_OTP_API = "https://api.teamworksc.com/api/v1/users/verify-otp";
 
   const systems = [
     { name: "City development System", url: "https://city.development.teamworksc.com/" },
@@ -143,32 +146,32 @@ const EmailFlowPopup = ({ onClose, onNavigate }) => {
         )}
 
         {/* --- FORGOT PASSWORD STEP --- */}
-        {step === "forgot_password" && (
+        {step === "forgot_password" && !resetSuccess && (
           <form onSubmit={handleForgotPassword} className="space-y-5 pt-4">
             <h3 className="text-2xl font-extrabold text-center text-slate-900 tracking-tight">Reset Password</h3>
             <p className="text-slate-500 text-sm text-center">Enter your email to receive a reset link.</p>
             <div className="space-y-4">
-              <input 
-                type="email" 
+              <input
+                type="email"
                 placeholder="Enter your email"
-                className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 outline-none focus:ring-2 focus:ring-blue-500 transition-all" 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)} 
-                required 
+                className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
-            <button 
+            <button
               disabled={loading || resetSuccess}
               className={`w-full py-4 text-white font-bold rounded-2xl shadow-lg transition-all ${resetSuccess ? "bg-green-500" : "bg-orange-500 hover:bg-orange-600"}`}
             >
-              {loading ? "Sending..." : resetSuccess ? "Email Sent!" : "Send Reset Link"}
+              {loading ? "Sending..." : resetSuccess ? "Email Sent!" : "Send OTP"}
             </button>
             {message && (
               <p className={`text-xs text-center font-bold py-3 rounded-xl border ${resetSuccess ? "text-green-600 bg-green-50 border-green-100" : "text-red-500 bg-red-50 border-red-100"}`}>
                 {message}
               </p>
             )}
-            <button 
+            <button
               type="button"
               onClick={() => { setStep("login"); setMessage(""); setResetSuccess(false); }}
               className="w-full text-slate-500 text-sm font-bold hover:text-slate-700 transition-colors"
@@ -176,6 +179,13 @@ const EmailFlowPopup = ({ onClose, onNavigate }) => {
               Back to Login
             </button>
           </form>
+        )}
+
+        {/* --- OTP INPUT STEP --- */}
+        {step === "forgot_password" && resetSuccess && (
+          <div className="pt-4">
+            <ConfirmOtp email={email} onSuccess={() => setStep("change_password")} />
+          </div>
         )}
 
         {/* --- SYSTEM SELECTION STEP --- */}
@@ -187,15 +197,29 @@ const EmailFlowPopup = ({ onClose, onNavigate }) => {
             </div>
             <div className="space-y-3">
               {systems.map((sys) => (
-                <button 
-                  key={sys.name} 
-                  onClick={() => onNavigate(sys.url)} 
+                <button
+                  key={sys.name}
+                  onClick={() => onNavigate(sys.url)}
                   className="w-full p-4 text-left bg-slate-50 hover:bg-blue-50 border border-slate-100 hover:border-blue-200 rounded-2xl text-slate-700 font-bold transition-all group flex justify-between items-center"
                 >
                   {sys.name} <span className="text-blue-500 group-hover:translate-x-1 transition-transform">→</span>
                 </button>
               ))}
             </div>
+          </div>
+        )}
+
+        {/* --- OTP INPUT STEP --- */}
+        {step === "otp_input" && (
+          <div className="pt-4">
+            <ConfirmOtp />
+          </div>
+        )}
+
+        {/* --- CHANGE PASSWORD STEP --- */}
+        {step === "change_password" && (
+          <div className="pt-4">
+            <PasswordInputDialog email={email} onClose={() => setStep("login")} />
           </div>
         )}
       </div>
